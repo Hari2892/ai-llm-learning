@@ -6,7 +6,7 @@ import sys
 
 load_dotenv()
 
-API_KEY = os.getenv("OPENAI_API_KEY")
+API_KEY = os.getenv("OPENAI_API_KEY") # Make sure to set this in your .env file
 API_URL = "https://api.openai.com/v1/chat/completions"
 
 def call_llm(prompt, model="gpt-4.1-mini", temperature=0.7):
@@ -24,7 +24,7 @@ def call_llm(prompt, model="gpt-4.1-mini", temperature=0.7):
     }
 
     try:
-        response = requests.post(API_URL, headers=headers, json=data, timeout=30)
+        response = requests.post(API_URL, headers=headers, json=data, timeout=30) # Added timeout for better error handling
 
         # Try parsing JSON safely
         try:
@@ -51,7 +51,7 @@ def call_llm(prompt, model="gpt-4.1-mini", temperature=0.7):
 
         # ✅ Handle success response
         try:
-            content = resp_json["choices"][0]["message"]["content"]
+            content = resp_json["choices"][0]["message"]["content"] # This is the expected path for a successful response
         except (KeyError, IndexError):
             return {
                 "success": False,
@@ -65,7 +65,7 @@ def call_llm(prompt, model="gpt-4.1-mini", temperature=0.7):
             "data": content
         }
 
-    except requests.exceptions.RequestException as e:
+    except requests.exceptions.RequestException as e: # Catching all request-related exceptions
         return {
             "success": False,
             "status": "network_error",
@@ -75,14 +75,14 @@ def call_llm(prompt, model="gpt-4.1-mini", temperature=0.7):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Simple LLM CLI tool")
+    parser = argparse.ArgumentParser(description="Simple LLM CLI tool") # Added description for better help message
     parser.add_argument("prompt", type=str, help="Prompt to send to LLM")
-    parser.add_argument("--model", default="gpt-4.1-mini")
+    parser.add_argument("--model", default="gpt-4.1-mini") # Default model is set to gpt-4.1-mini, but can be overridden with --model flag
     parser.add_argument("--temperature", type=float, default=0.7)
 
     args = parser.parse_args()
 
-    result = call_llm(args.prompt, args.model, args.temperature)
+    result = call_llm(args.prompt, args.model, args.temperature) # Passing model and temperature from command line arguments
 
     if result["success"]:
         print("\n🤖 Response:\n")
