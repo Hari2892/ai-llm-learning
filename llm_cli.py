@@ -7,9 +7,71 @@ import sys
 load_dotenv()
 
 API_KEY = os.getenv("OPENAI_API_KEY") # Make sure to set this in your .env file
-API_URL = "https://api.openai.com/v1/chat/completions"
+API_URL = "https://api.openai.com/v1/responses" # Updated to the correct endpoint for responses
 
 def call_llm(prompt, model="gpt-4.1-mini", temperature=0.7):
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    data = {
+        "model": model,
+        "input": prompt,
+        "temperature": temperature
+    }
+
+    try:
+        response = requests.post(
+            "https://api.openai.com/v1/responses",
+            headers=headers,
+            json=data,
+            timeout=30
+        )
+
+        try:
+            resp_json = response.json()
+        except ValueError:
+            return {
+                "success": False,
+                "status": response.status_code,
+                "error": response.text,
+                "code": "invalid_json"
+            }
+
+        if response.status_code != 200:
+            message = resp_json.get("error", {}).get("message", "Unknown error")
+            code = resp_json.get("error", {}).get("code", "no_code")
+
+            return {
+                "success": False,
+                "status": response.status_code,
+                "error": message,
+                "code": code
+            }
+
+        try:
+            content = resp_json["output"][0]["content"][0]["text"]
+        except (KeyError, IndexError):
+            return {
+                "success": False,
+                "status": "parse_error",
+                "error": f"Unexpected response format: {resp_json}",
+                "code": "parse_error"
+            }
+
+        return {
+            "success": True,
+            "data": content
+        }
+
+    except requests.exceptions.RequestException as e:
+        return {
+            "success": False,
+            "status": "network_error",
+            "error": str(e),
+            "code": "network_error"
+        }
     headers = {
         "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json"
