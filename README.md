@@ -38,9 +38,11 @@ Create a .env file in the root directory and add your API keys:
 ## 💻 Usage Examples
 
 **Basic Query:**
-   ```bash
-   python llm_cli.py "Explain recursion in simple terms"
+Ask a standard question using the default model settings.
+```bash
+python llm_cli.py "Explain recursion in simple terms"
 
 **Advanced Query with Parameters:**
-   ```bash
-   python llm_cli.py "Write a haiku about coding" --model gpt-4o-mini --temperature 0.3
+Pass specific flags to change the model and adjust the response temperature.
+```bash
+python llm_cli.py "Write a haiku about coding" --model gpt-4o-mini --temperature 0.3
