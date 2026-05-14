@@ -20,3 +20,23 @@ The tool handles API communication, parses responses, supports custom model para
    ```bash
    git clone [https://github.com/Hari2892/ai-llm-learning.git](https://github.com/Hari2892/ai-llm-learning.git)
    cd ai-llm-learning
+
+2. **Set up a virtual environment (Recommended):**
+   ```python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+
+3. **Install dependencies**
+   ```pip install -r requirements.txt
+
+4. **Environment Variables**
+Create a .env file in the root directory and add your API keys:
+   ```API_KEY=your_api_key_here
+
+
+## 💻 Usage Examples
+
+**Basic Query:**
+   ```python llm_cli.py "Explain recursion in simple terms"
+
+**Advanced Query with Parameters**
+   ```python llm_cli.py "Write a haiku about coding" --model gpt-4o-mini --temperature 0.3
