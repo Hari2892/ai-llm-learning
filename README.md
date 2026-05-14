@@ -1,6 +1,6 @@
 # 🤖 AI Terminal Assistant (LLM CLI)
 
-![Terminal Demonstration]
+![Terminal Demonstration](./terminal-screenshot.png)
 > *Note: A lightweight Command Line Interface (CLI) tool to interact with Large Language Models directly from the terminal.*
 
 ## 📖 Overview
