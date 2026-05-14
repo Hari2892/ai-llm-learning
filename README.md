@@ -85,3 +85,54 @@ python llm_cli.py "Write a haiku about coding" --model gpt-4o-mini --temperature
 ```
 
 ---
+
+## ⚠️ Graceful Error Handling Demonstration
+
+If the API key runs out of credits, the CLI catches the `429` status code and returns a clean, user-friendly error rather than crashing.
+
+### Example Error Output
+
+```text
+❌ Error:
+Status: 429
+Code: insufficient_quota
+Message: You exceeded your current quota, please check your plan and billing details.
+```
+
+This improves developer experience by providing clear diagnostics and preventing unexpected application termination.
+
+---
+
+## 🛠️ Tech Stack
+
+### Language
+- Python 3.x
+
+### Libraries
+- `requests` — HTTP client for API communication
+- `argparse` — CLI argument parsing
+- `python-dotenv` — Environment variable management
+
+### APIs
+- OpenAI REST API
+- Expandable to Gemini / Groq / Ollama integrations
+
+---
+
+## 🛠 Example Output
+
+```text
+Recursion is when a function calls itself
+to solve a smaller version of the same problem
+until it reaches a stopping point.
+```
+
+---
+
+## 👨‍💻 Author
+
+### Hariharan R
+Senior PHP & Full-Stack Developer
+
+- Portfolio: [https://hariharan-bio-site.netlify.app/]
+- LinkedIn: [https://linkedin.com/in/hariharan-r-55158515a]
