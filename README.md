@@ -132,7 +132,7 @@ until it reaches a stopping point.
 ## 👨‍💻 Author
 
 ### Hariharan R
-Senior PHP & Full-Stack Developer
+**Senior PHP & Full-Stack Developer**
 
-- Portfolio: [https://hariharan-bio-site.netlify.app/]
-- LinkedIn: [https://linkedin.com/in/hariharan-r-55158515a]
+- **[Portfolio](https://hariharan-bio-site.netlify.app/)**
+- **[LinkedIn](https://www.linkedin.com/in/hariharan-r-55158515a/)**
